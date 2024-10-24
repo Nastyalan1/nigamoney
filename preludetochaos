@@ -1,18 +1,28 @@
 #DFT OF GIVEN SEQUENCE EXP-1
+
 import numpy as np
 import matplotlib.pyplot as plt
+
+# Define the input sequence
 x = np.array([2, -2+2j, 3+1j, 1])
 N = len(x)
+
+# Initialize an array to store the DFT results
 X = np.zeros(N, dtype=complex)
+
+# Compute the DFT
 for k in range(N):
- for n in range(N):
- X[k] += x[n] * np.exp(-2j * np.pi * k * n / N)
+    for n in range(N):
+        X[k] += x[n] * np.exp(-2j * np.pi * k * n / N)
+
+# Print the results
 print("Input sequence is:")
 print(x)
-print("DFT of x(n) is :")
+print("DFT of x(n) is:")
 print(X)
-magnitude_spectrum = np.abs(X)
+
 # Plot the magnitude spectrum
+magnitude_spectrum = np.abs(X)
 plt.stem(np.arange(N), magnitude_spectrum)
 plt.title('Magnitude Spectrum of DFT')
 plt.xlabel('Frequency Index (k)')
@@ -20,8 +30,9 @@ plt.ylabel('Magnitude')
 plt.xticks(np.arange(N))
 plt.grid(True)
 plt.show()
-phase_spectrum = np.angle(X)
+
 # Plot the phase spectrum
+phase_spectrum = np.angle(X)
 plt.stem(np.arange(N), phase_spectrum)
 plt.title('Phase Spectrum of DFT')
 plt.xlabel('Frequency Index (k)')
@@ -29,42 +40,56 @@ plt.ylabel('Phase (radians)')
 plt.xticks(np.arange(N))
 plt.grid(True)
 plt.show()
-
-
-
 
 # IDFT OF GIVEN SEQUENCE EXP-1
 import numpy as np
 import matplotlib.pyplot as plt
-X= np.array([2, -2+2j, 3+1j, 1])
+
+# Input sequence X
+X = np.array([2, -2+2j, 3+1j, 1])
 N = len(X)
 x = np.zeros(N, dtype=complex)
+
+# Calculate DFT of X
 for n in range(N):
- for k in range(N):
- x[n] += X[k] * np.exp(2j * np.pi * k * n / N)
- x[n]/=N
+    for k in range(N):
+        x[n] += X[k] * np.exp(2j * np.pi * k * n / N)
+    x[n] /= N
+
+# Print the input sequence
 print("Input sequence is:")
-print()
-print("DFT of x(n) is :")
+print(X)
+
+# Print the DFT of x(n)
+print("DFT of x(n) is:")
 print(x)
+
+# Magnitude Spectrum
 magnitude_spectrum = np.abs(x)
-# Plot the magnitude spectrum
-plt.stem(np.arange(N), magnitude_spectrum)
+
+# Plot the Magnitude Spectrum
+plt.figure()
+plt.stem(np.arange(N), magnitude_spectrum, basefmt=" ")
 plt.title('Magnitude Spectrum of DFT')
 plt.xlabel('Frequency Index (k)')
 plt.ylabel('Magnitude')
 plt.xticks(np.arange(N))
 plt.grid(True)
 plt.show()
+
+# Phase Spectrum
 phase_spectrum = np.angle(x)
-# Plot the phase spectrum
-plt.stem(np.arange(N), phase_spectrum)
+
+# Plot the Phase Spectrum
+plt.figure()
+plt.stem(np.arange(N), phase_spectrum, basefmt=" ")
 plt.title('Phase Spectrum of DFT')
 plt.xlabel('Frequency Index (k)')
 plt.ylabel('Phase (radians)')
 plt.xticks(np.arange(N))
 plt.grid(True)
 plt.show()
+
 
 
 
@@ -347,16 +372,26 @@ plt.ylabel('h(n)')
 plt.title('Hamming window response')
 plt.grid(True)
 plt.show()
+
+
+
+
+
+
 import numpy as np #Hamming Window
+import numpy as np  # Import numpy
 import matplotlib.pyplot as plt
-n = np.array([0,1,2,3,4])
+
+n = np.array([0, 1, 2, 3, 4])
 hdn = (np.sin(np.pi / 4) * (n - 2)) / (np.pi * (n - 2))
-hdn[2]=0.25
-wn = 0.54 -0.46*np.cos(2* np.pi*n/ 4)
-hn = hdn* wn
-print (hn)
-plt.subplot(4,1,2)
-plt.stem(n,hn)
+hdn[2] = 0.25
+wn = 0.54 - 0.46 * np.cos(2 * np.pi * n / 4)
+hn = hdn * wn
+
+print(hn)
+
+plt.subplot(4, 1, 2)
+plt.stem(n, hn)
 plt.xlabel('n')
 plt.ylabel('h(n)')
 plt.title('Hamming window response')
@@ -395,6 +430,10 @@ n=np.array([1,0.1])
 d=np.array([1,0.2,9.01])
 Nr,Dr=signal.bilinear(n,d,fs)
 print("Nr:",Nr, "\nDr:",Dr)
+
+
+
+
 #Experiment 8 To design & Implemented High pass IIR filter
 import numpy as np
 from scipy.signal import butter, lfilter

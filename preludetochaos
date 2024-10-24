@@ -1,3 +1,36 @@
+
+Experiment no 1
+1.import numpy as np
+x=np.array([2, 2+2j, 3+1j, 1])
+N=len(x)
+X=np.zeros(N, dtype=complex)
+for k in range(N):
+ for n in range (N):
+ X[k] += x[n]*np.exp(-2j * np.pi * k * n/N)
+print ("DFT of x(n) is:")
+print(x)
+
+
+
+
+
+2.import numpy as np
+def dŌ(x):
+ N = len(x) # Length of the input sequence
+ n = np.arange(N) # Corrected typo: np.arrange -> np.arange
+ k = n.reshape((N, 1)) # Reshaping to create a column vector
+ twiddle_factor = np.exp(-2j * np.pi * k * n / N) # Twiddle factor calculaƟon
+ X = np.dot(twiddle_factor, x) # Matrix mulƟplicaƟon to compute DFT
+ return X
+# Define the input sequence
+x = np.array([2, -2 + 2j, 3 + 1j, 1])
+# Compute the DFT
+X_dŌ = dŌ(x)
+# Output the result
+print("Input sequence x:", x)
+print("DFT result X_dŌ:", X_dŌ)
+
+
 #DFT OF GIVEN SEQUENCE EXP-1
 
 import numpy as np
@@ -374,6 +407,23 @@ plt.grid(True)
 plt.show()
 
 
+
+
+exp 6:
+import numpy as np
+# import matplotlib.pyplot as plt # Uncomment if plotting is needed
+
+# Looping through a range of values from 1 to 5
+for n in range(1, 6):
+    # Calculate wn and hdn for each n
+    wn = 0.54 + 0.46 * np.cos(np.pi * n / 5)
+    hdn = (1 / (np.pi * n)) * (np.sin(np.pi * n) - np.sin(np.pi * n / 4))
+    
+    # hn is the product of wn and hdn
+    hn = wn * hdn
+    
+    # Print the resulting hn value
+    print(hn)
 
 
 
